@@ -17,9 +17,7 @@
           {% if form.errors %}
             <div class="mb-6" role="alert">
                 <div id="form_errors">
-                  {% for key, value in form.errors.items %}
                     <strong class="text-red-600">Incorrect Username or Password.</strong>
-                  {% endfor %}
                 </div>
             </div>
           {% endif %}
@@ -37,26 +35,10 @@
           <div class="mt-8">
             <label for="id_password" class="text-gray-800 text-sm block mb-2">Password</label>
             <div class="relative flex items-center">
-              <input
-    name="password"
-    type="password"
-    id="id_password"
-    required
-    class="w-full text-sm text-gray-800 border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none"
-    placeholder="Enter password"
-  />
-  <svg
-    id="togglePassword"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="#bbb"
-    stroke="#bbb"
-    class="w-[18px] h-[18px] absolute right-2 top-[50%] transform -translate-y-[50%] cursor-pointer"
-    viewBox="0 0 24 24"
-  >
-    <path
-      d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.48 0-4.5-2.02-4.5-4.5S9.52 8 12 8s4.5 2.02 4.5 4.5-2.02 4.5-4.5 4.5zm0-7a2.5 2.5 0 100 5 2.5 2.5 0 000-5z"
-    ></path>
-  </svg>
+              <input name="password" type="password" id="id_password" required class="w-full text-sm text-gray-800 border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none" placeholder="Enter password" />
+              <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-2 top-[50%] transform -translate-y-[50%] cursor-pointer" viewBox="0 0 24 24" >
+                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.48 0-4.5-2.02-4.5-4.5S9.52 8 12 8s4.5 2.02 4.5 4.5-2.02 4.5-4.5 4.5zm0-7a2.5 2.5 0 100 5 2.5 2.5 0 000-5z" ></path>
+              </svg>
             </div>
           </div>
 
