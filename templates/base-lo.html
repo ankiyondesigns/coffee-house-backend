@@ -5,10 +5,88 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/admin-login.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
   </head>
-  <body class="bg-orange-50">
+  <style>
+  @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  --first-color: hsl(36, 72%, 48%);
+  --first-color-alt: hsl(36, 72%, 44%);
+  --black-color: hsl(206, 12%, 12%);
+  --card-color: hsl(0, 0%, 90%);
+  --title-color: hsl(206, 12%, 12%);
+  --text-color: hsl(206, 4%, 42%);
+  --text-color-light: hsl(206, 4%, 75%);
+  --body-color: hsl(206, 4%, 97%);
+  --container-color: #fff;
+
+  /*========== Font and typography ==========*/
+  --body-font: "Poppins", sans-serif;
+  --biggest-font-size: 2.25rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.813rem;
+  --smaller-font-size: 0.75rem;
+
+  /*========== Font weight ==========*/
+  --font-bold: 700;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+@media screen and (min-width: 968px) {
+  :root {
+    --biggest-font-size: 3.5rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+.popins{
+  font-family: var(--body-font);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--title-color);
+  font-weight: var(--font-bold);
+}
+  </style>
+  <body class="popins">
     {% block content %} {% endblock %}
   </body>
 </html>
