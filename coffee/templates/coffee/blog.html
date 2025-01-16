@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="" type="image/x-icon" />
+
+    <!--=============== BOXICONS ===============-->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+
+    <title>Hello Coffee Origins</title>
+  </head>
+  <body>
+  <!--==================== HEADER ====================-->
+    <header class="header header-blog" id="header">
+      <nav class="nav container">
+        <a href="#" class="nav__logo">
+          <img
+            src="{% static 'images/new-logo.png' %}"
+            alt="Site Logo"
+            srcset=""
+            class="nav__logo-img"
+          />
+        </a>
+
+        <div class="nav__menu" id="nav-menu">
+  <ul class="nav__list">
+    <li class="nav__item">
+      <a href="{% url 'home' %}" class="nav__link active-link">Home</a>
+    </li>
+    <li class="nav__item">
+      <a href="{% url 'home' %}#about" class="nav__link">About</a>
+    </li>
+    <li class="nav__item">
+      <a href="{% url 'home' %}#products" class="nav__link">Products</a>
+    </li>
+    <li class="nav__item">
+      <a href="#contact" class="nav__link">Contact</a>
+    </li>
+  </ul>
+</div>
+
+
+        <!-- Toggle Button -->
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="bx bx-grid-alt"></i>
+        </div>
+      </nav>
+    </header>
+<section class="blog-section section ">
+<div class="container">
+  <div class="blog-banner">
+    <img src="{{ post.banner.url }}" alt="Blog Banner Image">
+  </div>
+  <div class="blog-content">
+    <h1 class="blog-title">{{ post.title }}</h1>
+    <div class="blog-meta">
+      <span class="blog-author">by {{ post.author }}</span>
+      <span class="blog-date">Published on {{ post.publish }}</span>
+    </div>
+    <div class="blog-share">
+      <button class="share-btn"><i class='bx bxl-facebook'></i> Share</button>
+      <button class="share-btn"><i class='bx bxl-twitter'></i> Tweet</button>
+      <button class="share-btn"><i class='bx bx-paperclip'></i> Copy Link</button>
+    </div>
+    <article class="blog-text">
+      {{ post.body|safe }}
+    </article>
+  </div>
+  </div>
+</section>
+
+
+<!--==================== FOOTER ====================-->
+    <footer class="footer" id="contact">
+      <div class="footer__container container">
+        <h1 class="footer__title"></h1>
+
+        <div class="footer__content grid">
+          <div class="footer__data">
+            <p class="footer__description">Subscribe to our newsletter</p>
+
+            <div class="footer__newsletter">
+              <input
+                type="email"
+                placeholder="Your email"
+                class="footer__input"
+              />
+              <button class="footer__button">
+                <i class="bx bx-right-arrow-alt"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="footer__data">
+            <h2 class="footer__subtitle">Address</h2>
+            <p class="footer__information">
+              9876 Megenagna Av. <br />
+              Addis Ababa 123, Ethiopia
+            </p>
+          </div>
+
+          <div class="footer__data">
+            <h2 class="footer__subtitle">Contact</h2>
+            <p class="footer__information">
+              +2519 12 345678 <br />
+              coffee@email.com
+            </p>
+          </div>
+
+          <div class="footer__data">
+            <h2 class="footer__subtitle">Office</h2>
+            <p class="footer__information">
+              Monday - Saturday <br />
+              9AM - 10PM
+            </p>
+          </div>
+        </div>
+        <div class="footer__group">
+          <ul class="footer__social">
+            <a href="#" class="footer__social-link" target="_blank">
+              <i class="bx bxl-facebook"></i>
+            </a>
+            <a href="#" class="footer__social-link" target="_blank">
+              <i class="bx bxl-instagram"></i>
+            </a>
+            <a href="#" class="footer__social-link" target="_blank">
+              <i class="bx bxl-twitter"></i>
+            </a>
+          </ul>
+
+          <span class="footer__copy">
+            &#169; Hello Coffee Origins. All rigths reserved
+          </span>
+        </div>
+      </div>
+    </footer>
+
+
+<!--=============== MIXITUP FILTER ===============-->
+    <script src="{% static 'js/mixitup.min.js' %}"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
