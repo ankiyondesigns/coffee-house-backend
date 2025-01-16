@@ -2,32 +2,106 @@
 {% load static %}
 {% block title %}Hello Coffee | Admin{% endblock %} 
 {% block content %}
-<div class="admin-login-wrapper">
-  <div class="admin-login-banner">
-    <div class="admin-login-logo">
-      <img src="{% static 'images/logo.png' %}" alt="Company Logo">
-    </div>
-  </div>
+<div class="">
+      <div class="grid lg:grid-cols-2 md:grid-cols-2 items-center gap-4">
+        <div class="max-md:order-1 h-screen min-h-full">
+          <img src="{% static 'images/Pacage mockup.png' %}" class="w-full h-full object-cover" alt="login-image" />
+        </div>
 
-  <div class="admin-login-form-container">
-    <div class="admin-login-form">
-      <h2 class="form-title">Welcome Back</h2>
-      <form method="post" action="{% url 'admin:login' %}">
+        <form class="max-w-xl w-full p-6 mx-auto" method="post">
         {% csrf_token %}
-        <div class="input-group">
-          <input type="text" name="username" id="id_username" placeholder="Username" required>
-          <span class="icon username-icon"></span>
-        </div>
-        <div class="input-group">
-          <input type="password" name="password" id="id_password" placeholder="Password" required>
-          <span class="icon password-icon"></span>
-        </div>
-        <button type="submit" class="submit-button">
-          <span class="sign-in-icon"></span> Sign In
-        </button>
-        <a href="#" class="forgot-password">Forgot Password?</a>
-      </form>
+          <div class="mb-12">
+            <h3 class="text-gray-800 text-4xl font-extrabold">Welcome back!</h3>
+          </div>
+
+          {% if form.errors %}
+            <div class="mb-6" role="alert">
+                <div id="form_errors">
+                  {% for key, value in form.errors.items %}
+                    <strong class="text-red-600">Incorrect Username or Password.</strong>
+                  {% endfor %}
+                </div>
+            </div>
+          {% endif %}
+
+          <div>
+            <label for="id_username" class="text-gray-800 text-sm block mb-2">Username</label>
+            <div class="relative flex items-center">
+              <input type="text" name="username" id="id_username" required class="w-full text-sm text-gray-800 border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none" placeholder="Enter Username" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-2" viewBox="0 0 24 24">
+                <path fill="none" stroke-miterlimit="10" stroke-width="1.5" d="M12 12c3.315 0 6-2.685 6-6s-2.685-6-6-6-6 2.685-6 6 2.685 6 6 6zM3 20.25v-.5c0-2.21 1.79-4 4-4h10c2.21 0 4 1.79 4 4v.5c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2z"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <label for="id_password" class="text-gray-800 text-sm block mb-2">Password</label>
+            <div class="relative flex items-center">
+              <input
+    name="password"
+    type="password"
+    id="id_password"
+    required
+    class="w-full text-sm text-gray-800 border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none"
+    placeholder="Enter password"
+  />
+  <svg
+    id="togglePassword"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="#bbb"
+    stroke="#bbb"
+    class="w-[18px] h-[18px] absolute right-2 top-[50%] transform -translate-y-[50%] cursor-pointer"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.48 0-4.5-2.02-4.5-4.5S9.52 8 12 8s4.5 2.02 4.5 4.5-2.02 4.5-4.5 4.5zm0-7a2.5 2.5 0 100 5 2.5 2.5 0 000-5z"
+    ></path>
+  </svg>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-4 mt-6">
+            <div class="flex items-center">
+              <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+              <label for="remember-me" class="ml-3 block text-sm text-gray-800">
+                Remember me
+              </label>
+            </div>
+            <div>
+              <a href="jajvascript:void(0);" class="text-blue-600 font-semibold text-sm hover:underline">
+                Forgot Password?
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-12">
+            <button style="background: linear-gradient(160deg, #022036 -4%, #01121e 46%); padding: 1rem 1.75rem; border-radius: 0.25rem;" type="submit" class="w-full text-sm tracking-wide rounded-md text-white uppercase focus:outline-none">
+              Sign in
+            </button>
+          </div>
+
+          <div class="flex justify-center items-center text-center mt-8">
+            <p class="text-sm text-gray-800">© Hello Coffee Origins 2025.</p>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-</div>
+
+
+<script>
+  const passwordInput = document.getElementById("id_password");
+  const togglePasswordIcon = document.getElementById("togglePassword");
+
+  togglePasswordIcon.addEventListener("click", () => {
+    // Toggle password visibility
+    const isPasswordHidden = passwordInput.type === "password";
+    passwordInput.type = isPasswordHidden ? "text" : "password";
+
+    // Toggle the icon (eye/eye-slash)
+    togglePasswordIcon.innerHTML = isPasswordHidden
+      ? '<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.48 0-4.5-2.02-4.5-4.5S9.52 8 12 8s4.5 2.02 4.5 4.5-2.02 4.5-4.5 4.5zm-6.93-6c1.73 2.94 4.29 4.5 6.93 4.5s5.2-1.56 6.93-4.5c-1.73-2.94-4.29-4.5-6.93-4.5s-5.2 1.56-6.93 4.5z"></path>'
+      : '<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.48 0-4.5-2.02-4.5-4.5S9.52 8 12 8s4.5 2.02 4.5 4.5-2.02 4.5-4.5 4.5zm-6.93-6c1.73 2.94 4.29 4.5 6.93 4.5s5.2-1.56 6.93-4.5c-1.73-2.94-4.29-4.5-6.93-4.5s-5.2 1.56-6.93 4.5z"></path>';
+  });
+</script>
+
 {% endblock %}
