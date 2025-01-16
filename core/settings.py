@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     # Local Apps
     'coffee',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +128,34 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = ['static/']
+
+
+# settings.py
+
+CKEDITOR_UPLOAD_PATH = "uploads/"  # Directory for uploaded files
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 'auto',
+        'extraPlugins': ','.join([
+            'uploadimage',  # For image upload
+        ]),
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['UploadImage', 'Image', 'Table'],  # Include UploadImage here
+            ['Source'],  # Toggle between source and WYSIWYG editor
+        ],
+        'removeDialogTabs': 'image:advanced;link:advanced',  # Simplify dialogs
+    },
+}
+
+
 
 # Media files
 
