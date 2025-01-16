@@ -161,58 +161,25 @@
           </h2>
 
           <div class="products__content grid">
-            <!-- Coffee -->
-            <article class="products__card coffee">
-              <div class="products__shape">
-                <img
-                  src="{% static 'images/product-coffee.png' %}"
-                  alt="Coffee Images"
-                  class="products__img"
-                />
-              </div>
+            {% for product in products %}
+                <article class="products__card coffee">
+                    <div class="products__shape">
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="Coffee Image"
+                            class="products__img"
+                        />
+                    </div>
 
-              <div class="products__data">
-                <h2 class="products__price">350 ETB</h2>
-                <h3 class="products__name">250GM</h3>
+                    <div class="products__data">
+                        <h2 class="products__price">{{ product.price }} ETB</h2>
+                        <h3 class="products__name">{{ product.measurement_grams }} GM</h3>
 
-                <button class="button products__button"></button>
-              </div>
-            </article>
-
-            <article class="products__card coffee">
-              <div class="products__shape">
-                <img
-                  src="{% static 'images/product-coffee.png' %}"
-                  alt="Coffee Images"
-                  class="products__img"
-                />
-              </div>
-
-              <div class="products__data">
-                <h2 class="products__price">350 ETB</h2>
-                <h3 class="products__name">500GM</h3>
-
-                <button class="button products__button"></button>
-              </div>
-            </article>
-
-            <article class="products__card coffee">
-              <div class="products__shape">
-                <img
-                  src="{% static 'images/product-coffee.png' %}"
-                  alt="Coffee Images"
-                  class="products__img"
-                />
-              </div>
-
-              <div class="products__data">
-                <h2 class="products__price">300 ETB</h2>
-                <h3 class="products__name">1 Kg</h3>
-
-                <button class="button products__button"></button>
-              </div>
-            </article>
-          </div>
+                        <button class="button products__button"></button>
+                    </div>
+                </article>
+            {% endfor %}
+            </div>
         </div>
       </section>
 
