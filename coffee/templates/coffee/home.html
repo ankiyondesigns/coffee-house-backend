@@ -296,32 +296,31 @@
           </h2>
 
           <div class="blog__content grid">
+          {% for post in posts %}
             <article class="blog__card">
               <div class="blog__image">
                 <img
-                  src="{% static 'images/blog1.png' %}"
+                  src="{{ post.banner.url }}"
                   alt="Blog Thumbnails"
                   class="blog__img"
                 />
-                <a href="#" class="blog__button">
+                <a href="{% url 'post_detail' post.id %}" class="blog__button">
                   <i class="bx bx-right-arrow-alt"></i>
                 </a>
               </div>
 
               <div class="blog__data">
                 <h2 class="blog__title">
-                  The Journey of Ethiopian Coffee: From Farm to Cup
+                  {{ post.title }}
                 </h2>
                 <p class="blog__description">
-                  Ethiopia, often referred to as the birthplace of coffee, is
-                  home to some of the world's most celebrated and distinctive
-                  coffee beans.
+                  {{ post.body|truncatewords:30|linebreaks }}
                 </p>
 
                 <div class="blog__footer"></div>
               </div>
             </article>
-
+          {% endfor %}
             <article class="blog__card">
               <div class="blog__image">
                 <img
