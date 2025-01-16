@@ -11,6 +11,8 @@ urlpatterns = [
     # Our App Urls
     path('', include('coffee.urls')),
 
+    path('ckeditor', include('ckeditor_uploader.urls')),
+
     # Password Reset URLS
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
