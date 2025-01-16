@@ -1,5 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-
+from django.shortcuts import render
+from .models import CoffeeProduct
 
 def home(request):
-    return render(request, 'coffee/home.html', {})
+    # Get all coffee products from the database
+    products = CoffeeProduct.objects.all()
+
+    # Pass the products to the template context
+    return render(request, 'coffee/home.html', {'products': products})
