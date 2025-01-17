@@ -18,11 +18,11 @@ def blog(request):
     # Pass the products to the template context
     return render(request, 'coffee/blog.html', {})
 
-def post_detail(request, id):
+def post_detail(request, post):
     
     post = get_object_or_404(Post,
-                                id=id,
-                                status=Post.Status.PUBLISHED)
+                                status=Post.Status.PUBLISHED,
+                                slug=post)
 
     
     return render(request,
