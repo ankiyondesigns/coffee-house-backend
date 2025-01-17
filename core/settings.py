@@ -32,6 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'unfold',  # before django.contrib.admin
+    'unfold.contrib.filters',  # optional, if special filters are needed
+    'unfold.contrib.forms',  # optional, if special form elements are needed
+    'unfold.contrib.inlines',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -152,6 +156,14 @@ CKEDITOR_CONFIGS = {
             ['Source'],  # Toggle between source and WYSIWYG editor
         ],
         'removeDialogTabs': 'image:advanced;link:advanced',  # Simplify dialogs
+
+        # Add fonts
+        'contentsCss': [
+            'https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap',
+            'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap',
+        ],
+        'font_names': 'Bebas Neue/Bebas Neue; Poppins/Poppins;' +
+                      'Arial/Arial; Times New Roman/Times New Roman; Verdana/Verdana;',
     },
 }
 
