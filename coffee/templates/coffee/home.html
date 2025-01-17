@@ -304,7 +304,7 @@
                   alt="Blog Thumbnails"
                   class="blog__img"
                 />
-                <a href="{% url 'post_detail' post.id %}" class="blog__button">
+                <a href="{{ post.get_absolute_url }}" class="blog__button">
                   <i class="bx bx-right-arrow-alt"></i>
                 </a>
               </div>
