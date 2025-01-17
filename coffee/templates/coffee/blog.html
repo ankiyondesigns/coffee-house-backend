@@ -26,7 +26,7 @@
   <!--==================== HEADER ====================-->
     <header class="header header-blog" id="header">
       <nav class="nav container">
-        <a href="#" class="nav__logo">
+        <a href="{% url 'home' %}" class="nav__logo">
           <img
             src="{% static 'images/new-logo.png' %}"
             alt="Site Logo"
@@ -59,6 +59,8 @@
         </div>
       </nav>
     </header>
+
+<!-- Blog detail section -->
 <section class="blog-section section ">
 <div class="container">
   <div class="blog-banner">
@@ -83,6 +85,11 @@
   </div>
 </section>
 
+<!-- Add a styled horizontal rule -->
+<div class="container">
+<hr class="styled-hr" />
+</div>
+<!-- Recommendation Section -->
 <section class="recommended-blogs section">
   <div class="container">
     <h2 class="section-title">You Might Also Like</h2>
