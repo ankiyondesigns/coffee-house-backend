@@ -23,8 +23,12 @@ def post_detail(request, post):
     post = get_object_or_404(Post,
                                 status=Post.Status.PUBLISHED,
                                 slug=post)
+    
+    # Fetch recommended posts (e.g., 3 random posts excluding the current post)
+    recommended_posts = Post.published.exclude(id=post.id).order_by('?')[:3]
 
     
     return render(request,
                 'coffee/blog.html',
-                            {'post': post})
+                            {'post': post,
+                             'recommended_posts': recommended_posts,})
