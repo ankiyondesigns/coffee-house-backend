@@ -773,6 +773,40 @@ button {
 }
 
 
+.recommended-blogs {
+  margin-top: 50px;
+  padding: 40px 0;
+  background-color: #f8f8f8;
+}
+
+.recommended-blogs .section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.recommended-blogs-list {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.recommended-blog-item {
+  width: 100%;
+}
+
+.recommended-blog-img {
+  width: 50%;
+  height: 50%;
+  border-radius: 8px;
+}
+
+.recommended-blog-title {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
 
 .blog-text h2 {
   font-size: var(--font-lg);
