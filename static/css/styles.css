@@ -807,6 +807,20 @@ button {
 }
 
 
+.styled-hr {
+  border: none;
+  height: 1px; /* Thickness of the line */
+  background: linear-gradient(160deg, #022036 -4%, #01121e 46%); /* Gradient effect */
+  margin: 40px 0; /* Space above and below the line */
+  width: 80%; /* Width of the line */
+  margin-left: auto;
+  margin-right: auto; /* Center the line */
+  border-radius: 5px; /* Smooth edges */
+  opacity: 0.5;
+}
+
+
+
 
 .blog-text h2 {
   font-size: var(--font-lg);
