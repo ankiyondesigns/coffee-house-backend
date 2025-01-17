@@ -99,6 +99,7 @@ button {
   cursor: pointer;
 }
 
+
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   max-width: 1024px;
@@ -729,6 +730,49 @@ button {
   color: var(--text-dark);
   line-height: 1.8;
 }
+
+.blog-text ul {
+  list-style: disc;
+  margin: 1em 0;
+  padding-left: 2rem;
+}
+
+.blog-text ol {
+  list-style: decimal;
+  margin: 1em 0;
+  padding-left: 2rem;
+}
+
+.blog-text a {
+  text-decoration: underline; /* Or any desired style */
+  color: inherit; /* Keeps the color consistent */
+}
+
+/* Copy Notification Styling */
+.copy-notification {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+  z-index: 1000;
+}
+
+.copy-notification.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
 
 .blog-text h2 {
   font-size: var(--font-lg);
