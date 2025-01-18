@@ -9,9 +9,9 @@ from django.contrib.auth.models import User
 from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
 class CoffeeProductAdmin(ModelAdmin):
-    list_display = ('name', 'price', 'measurement_grams', 'image_preview')
+    list_display = ('name', 'price', 'measurement_unit','measurement_value', 'image_preview')
     search_fields = ('name', 'description')
-    list_filter = ('price', 'measurement_grams')
+    list_filter = ('price', 'measurement_unit', 'measurement_value')
     ordering = ('price',)
     list_per_page = 10
 
