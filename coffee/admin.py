@@ -68,6 +68,6 @@ admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
 
 
-admin.site.site_header = "Coffee Origins"
+admin.site.site_header = "Hello Coffee"
 admin.site.site_title = "Website Admin"
 admin.site.index_title = "Welcome Admin"
