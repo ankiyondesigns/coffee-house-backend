@@ -1,6 +1,6 @@
 {% extends "base-lo.html" %}
 {% load static %}
-{% block title %}Hello Coffee - Signin{% endblock %} 
+{% block title %}Hello Coffee - SignIn{% endblock %} 
 {% block content %}
 <div class="">
       <div class="grid lg:grid-cols-2 md:grid-cols-2 items-center gap-4">
@@ -50,10 +50,10 @@
               </label>
             </div>
             <div>
-  <a href="{% url 'password_reset' %}" class="text-blue-600 font-semibold text-sm hover:underline">
-    Forgot Password?
-  </a>
-</div>
+            <a href="{% url 'password_reset' %}" class="text-blue-600 font-semibold text-sm hover:underline">
+              Forgot Password?
+            </a>
+          </div>
 
           </div>
 
