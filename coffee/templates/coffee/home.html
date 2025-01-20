@@ -16,7 +16,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Welcome to Hello - Coffee Origins">
     <meta property="og:description" content="Discover the origins of premium coffee, explore our products, and immerse yourself in the world of exceptional coffee. Start your journey today!">
-    <meta property="og:image" content="{% static 'images/new-logo.png' %}">
+    <meta property="og:image" content="{% static 'images/logo-black.png' %}">
     <meta property="og:url" content="https://example.com">
     <meta property="og:type" content="website">
 
@@ -24,10 +24,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Welcome to Hello - Coffee Origins">
     <meta name="twitter:description" content="Discover the origins of premium coffee, explore our products, and immerse yourself in the world of exceptional coffee. Start your journey today!">
-    <meta name="twitter:image" content="{% static 'images/new-logo.png' %}">
+    <meta name="twitter:image" content="{% static 'images/logo-black.png' %}">
 
     <!-- Favicon -->
-    <link rel="icon" href="{% static 'images/new-logo.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'favicon/favicon.ico' %}" type="image/x-icon">
 
 
 
@@ -40,7 +40,7 @@
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 
-    <title>Hello Coffee Origins</title>
+    <title>{% block title %}Hello Coffee - Home{% endblock %}</title>
   </head>
   <body>
     <!--==================== LOADER ====================-->
