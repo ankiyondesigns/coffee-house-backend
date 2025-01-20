@@ -32,6 +32,23 @@ class PostAdmin(ModelAdmin):
     raw_id_fields = ['author']
     date_hierarchy = 'publish'
     ordering = ['status', 'publish']
+    readonly_fields = ['author']  # Make the author field read-only
+
+    def save_model(self, request, obj, form, change):
+        """
+        Automatically set the logged-in user as the author for new posts.
+        """
+        if not obj.pk:  # If this is a new post
+            obj.author = request.user
+        super().save_model(request, obj, form, change)
+
+    def author(self, obj):
+        """
+        Display the name of the logged-in user in the read-only author field.
+        """
+        if obj.author:
+            return obj.author.username  # Display the username of the user
+        return "No author"
 
 admin.site.register(CoffeeProduct, CoffeeProductAdmin)
 
@@ -51,6 +68,7 @@ class CustomAdminSite(admin.AdminSite):
     def each_context(self, request):
         context = super().each_context(request)
         context['extra_css'] = ['admin/css/custom_admin.css']
+        context['favicon'] = format_html('<link rel="icon" href="{}/static/favicon/favicon.ico" type="image/x-icon">', request.build_absolute_uri('/'))
         return context
 
 # Initialize custom admin site
