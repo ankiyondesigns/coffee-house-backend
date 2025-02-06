@@ -659,6 +659,42 @@ button {
 }
 
 
+/*=============== PAGINATION ===============*/
+/*=============== PAGINATION ===============*/
+.pagination {
+  display: flex;
+  justify-content: start;
+  margin-top: 3rem;
+}
+
+.pagination__button {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  color: var(--title-color);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.pagination__button:hover:not(.disabled) {
+  background-color: #f1f1f1;
+}
+
+.pagination__button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none; /* Prevents clicking */
+}
+
+.current {
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  color: var(--title-color);
+}
+
+
 /*=============== Blog Sample ===============*/
 /* Blog Section */
 .blog-section {
