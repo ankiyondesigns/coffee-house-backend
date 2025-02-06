@@ -315,69 +315,44 @@
         </div>
       </section>
 
-      <!--==================== BLOG ====================-->
-      {% if posts %}
+          <!-- coffee/templates/coffee/home.html -->
+    {% if posts %}
       <section class="blog section" id="blog">
         <div class="blog__container container">
           <h2 class="section__title">
             Our Blogs Coffee with trending topic for this week
           </h2>
 
-          <div class="blog__content grid">
-          {% for post in posts %}
-            <article class="blog__card">
-            <a href="{{ post.get_absolute_url }}">
-              <div class="blog__image">
-                <img
-                  src="{{ post.banner.url }}"
-                  alt="Blog Thumbnails"
-                  class="blog__img"
-                />
-                <a href="{{ post.get_absolute_url }}" class="blog__button">
-                  <i class="bx bx-right-arrow-alt"></i>
-                </a>
-              </div>
-              </a>
-
-              <div class="blog__data">
-              <a href="{{ post.get_absolute_url }}">
-                <h2 class="blog__title">
-                  {{ post.title }}
-                </h2>
-              </a>
-                <p class="blog__description">
-                  {{ post.body|safe|truncatewords:20|linebreaks }}
-                </p>
-
-                <div class="blog__footer"></div>
-              </div>
-            </article>
-          {% endfor %}
+          <div class="blog__content grid" id="blog-posts">
+            {% include 'coffee/blog_posts_partial.html' with posts=posts %}
           </div>
+
           <!-- Pagination -->
           <div class="pagination">
-      <span class="step-links">
-        <!-- Previous Button -->
-        <a href="{% if posts.has_previous %}?page={{ posts.previous_page_number }}{% else %}#{% endif %}"
-           class="pagination__button {% if not posts.has_previous %}disabled{% endif %}">
-          previous
-        </a>
+            <span class="step-links">
+              <!-- Previous Button -->
+              <a href="{% if posts.has_previous %}?page={{ posts.previous_page_number }}{% else %}#{% endif %}"
+                class="pagination__button {% if not posts.has_previous %}disabled{% endif %}"
+                id="prev-page">
+                previous
+              </a>
 
-        <!-- Current Page Info -->
-        <span class="current">
-          Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
-        </span>
+              <!-- Current Page Info -->
+              <span class="current">
+                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+              </span>
 
-        <!-- Next Button -->
-        <a href="{% if posts.has_next %}?page={{ posts.next_page_number }}{% else %}#{% endif %}"
-           class="pagination__button {% if not posts.has_next %}disabled{% endif %}">
-          next
-        </a>
-      </span>
-    </div>
+              <!-- Next Button -->
+              <a href="{% if posts.has_next %}?page={{ posts.next_page_number }}{% else %}#{% endif %}"
+                class="pagination__button {% if not posts.has_next %}disabled{% endif %}"
+                id="next-page">
+                next
+              </a>
+            </span>
+          </div>
         </div>
       </section>
-      {% endif %}
+    {% endif %}
     </main>
 
     <!--==================== FOOTER ====================-->
@@ -445,5 +420,68 @@
 
     <!--=============== MAIN JS ===============-->
     <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const blogPosts = document.getElementById('blog-posts');
+      const prevButton = document.getElementById('prev-page');
+      const nextButton = document.getElementById('next-page');
+
+      function loadPage(page) {
+        fetch(`?page=${page}`, {
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',  // Indicate this is an AJAX request
+          },
+        })
+          .then(response => response.json())
+          .then(data => {
+            blogPosts.innerHTML = data.posts_html;  // Update the posts
+            updatePagination(data);  // Update pagination buttons
+          })
+          .catch(error => console.error('Error loading page:', error));
+      }
+
+      function updatePagination(data) {
+        // Update current page info
+        document.querySelector('.current').textContent = `Page ${data.current_page} of ${data.total_pages}.`;
+
+        // Update previous button
+        if (data.has_previous) {
+          prevButton.href = `?page=${data.current_page - 1}`;
+          prevButton.classList.remove('disabled');
+        } else {
+          prevButton.href = '#';
+          prevButton.classList.add('disabled');
+        }
+
+        // Update next button
+        if (data.has_next) {
+          nextButton.href = `?page=${data.current_page + 1}`;
+          nextButton.classList.remove('disabled');
+        } else {
+          nextButton.href = '#';
+          nextButton.classList.add('disabled');
+        }
+      }
+
+      // Handle previous button click
+      prevButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!prevButton.classList.contains('disabled')) {
+          const prevPage = new URL(prevButton.href).searchParams.get('page');
+          loadPage(prevPage);
+        }
+      });
+
+      // Handle next button click
+      nextButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!nextButton.classList.contains('disabled')) {
+          const nextPage = new URL(nextButton.href).searchParams.get('page');
+          loadPage(nextPage);
+        }
+      });
+    });
+  </script>
   </body>
 </html>
