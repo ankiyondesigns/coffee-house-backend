@@ -13,7 +13,7 @@ class CoffeeProduct(models.Model):
     ]
 
     image = models.ImageField(upload_to='coffee_products/')
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     measurement_value = models.PositiveIntegerField(null=True, blank=True)
