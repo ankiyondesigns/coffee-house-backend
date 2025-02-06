@@ -124,8 +124,14 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Email Backend for dev purpose
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.hellocoffeeorigins.com'  # Outgoing server
+EMAIL_PORT = 465  # SMTP Port for SSL
+EMAIL_USE_SSL = True  # Use SSL for secure connection
+EMAIL_HOST_USER = 'admin@hellocoffeeorigins.com'  # Email username
+EMAIL_HOST_PASSWORD = 'Origins@Coffee'  # Email account's password
+DEFAULT_FROM_EMAIL = 'admin@hellocoffeeorigins.com'  # Default sender email
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
