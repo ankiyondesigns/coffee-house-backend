@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from .models import CoffeeProduct, Post
 from django.http import Http404
@@ -7,10 +8,26 @@ def home(request):
     products = CoffeeProduct.objects.all()
 
     # Get all blog posts from the database
-    posts = Post.published.all()
+    posts_list = Post.published.all()
 
-    # Pass the products to the template context
-    return render(request, 'coffee/home.html', {'products': products, 'posts': posts})
+    # Paginate the blog posts
+    paginator = Paginator(posts_list, 2)  # Show 2 posts per page
+    page_number = request.GET.get('page')  # Get the current page number from the request
+
+    try:
+        posts = paginator.page(page_number)  # Get the posts for the current page
+    except PageNotAnInteger:
+        # If page is not an integer, deliver the first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g., 9999), deliver the last page
+        posts = paginator.page(paginator.num_pages)
+
+    # Pass the products and paginated posts to the template context
+    return render(request, 'coffee/home.html', {
+        'products': products,
+        'posts': posts,  # Pass the paginated posts
+    })
 
 def blog(request):
     # Get all coffee products from the database
