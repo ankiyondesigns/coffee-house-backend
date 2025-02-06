@@ -1,0 +1,23 @@
+<!-- coffee/templates/coffee/blog_posts_partial.html -->
+{% for post in posts %}
+  <article class="blog__card">
+    <a href="{{ post.get_absolute_url }}">
+      <div class="blog__image">
+        <img src="{{ post.banner.url }}" alt="Blog Thumbnails" class="blog__img" />
+        <a href="{{ post.get_absolute_url }}" class="blog__button">
+          <i class="bx bx-right-arrow-alt"></i>
+        </a>
+      </div>
+    </a>
+
+    <div class="blog__data">
+      <a href="{{ post.get_absolute_url }}">
+        <h2 class="blog__title">{{ post.title }}</h2>
+      </a>
+      <p class="blog__description">
+        {{ post.body|safe|truncatewords:20|linebreaks }}
+      </p>
+      <div class="blog__footer"></div>
+    </div>
+  </article>
+{% endfor %}
