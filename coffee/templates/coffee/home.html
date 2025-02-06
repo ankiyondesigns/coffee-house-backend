@@ -176,6 +176,7 @@
       </div>
 
       <!--==================== PRODUCTS ====================-->
+      {% if products %}
       <section class="products section" id="products">
         <div class="products__container container">
           <h2 class="section__title">
@@ -194,16 +195,20 @@
                     </div>
 
                     <div class="products__data">
-                        <h2 class="products__price"></h2>
-                        <h3 class="products__name">
+                      {% if product.price is not None %}
+                        <h2 class="products__price">{{ product.price }} ETB</h2>
+                      {% endif %}
+                      <h3 class="products__name">
                         <i class='bx bxs-purchase-tag'></i>
-                        {{ product.measurement_value }} {{ product.measurement_unit }} </h3>
+                        {{ product.measurement_value }} {{ product.measurement_unit }}
+                      </h3>
                     </div>
                 </article>
             {% endfor %}
             </div>
         </div>
       </section>
+      {% endif %}
 
       <!--==================== QUALITY ====================-->
       <section class="quality section" id="about">
@@ -311,6 +316,7 @@
       </section>
 
       <!--==================== BLOG ====================-->
+      {% if posts %}
       <section class="blog section" id="blog">
         <div class="blog__container container">
           <h2 class="section__title">
@@ -371,6 +377,7 @@
     </div>
         </div>
       </section>
+      {% endif %}
     </main>
 
     <!--==================== FOOTER ====================-->
