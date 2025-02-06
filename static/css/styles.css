@@ -335,6 +335,10 @@ button {
   }
 }
 
+.ankiyon{
+  color: rgb(50, 50, 233);
+}
+
 /*=============== BUTTON ===============*/
 .button {
   display: inline-block;
