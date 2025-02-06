@@ -1,5 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.template.loader import render_to_string
 from .models import CoffeeProduct, Post
 from django.http import Http404
 
@@ -23,7 +25,18 @@ def home(request):
         # If page is out of range (e.g., 9999), deliver the last page
         posts = paginator.page(paginator.num_pages)
 
-    # Pass the products and paginated posts to the template context
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        # If it's an AJAX request, return JSON data
+        posts_html = render_to_string('coffee/blog_posts_partial.html', {'posts': posts})
+        return JsonResponse({
+            'posts_html': posts_html,
+            'has_next': posts.has_next(),
+            'has_previous': posts.has_previous(),
+            'current_page': posts.number,
+            'total_pages': paginator.num_pages,
+        })
+
+    # If it's a regular request, render the full page
     return render(request, 'coffee/home.html', {
         'products': products,
         'posts': posts,  # Pass the paginated posts
