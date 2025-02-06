@@ -25,7 +25,7 @@ class CoffeeProduct(models.Model):
     )
 
     def __str__(self):
-        return self.name if self.name else 'Unnamed Coffee Product'
+        return self.measurement_unit
 
 
 
