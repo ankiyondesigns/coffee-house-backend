@@ -348,6 +348,27 @@
             </article>
           {% endfor %}
           </div>
+          <!-- Pagination -->
+          <div class="pagination">
+      <span class="step-links">
+        <!-- Previous Button -->
+        <a href="{% if posts.has_previous %}?page={{ posts.previous_page_number }}{% else %}#{% endif %}"
+           class="pagination__button {% if not posts.has_previous %}disabled{% endif %}">
+          previous
+        </a>
+
+        <!-- Current Page Info -->
+        <span class="current">
+          Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        <!-- Next Button -->
+        <a href="{% if posts.has_next %}?page={{ posts.next_page_number }}{% else %}#{% endif %}"
+           class="pagination__button {% if not posts.has_next %}disabled{% endif %}">
+          next
+        </a>
+      </span>
+    </div>
         </div>
       </section>
     </main>
@@ -370,8 +391,11 @@
           <div class="footer__data">
             <h2 class="footer__subtitle">Contact</h2>
             <p class="footer__information">
+              <i class='bx bxs-phone'></i>
               +251961444888 <br />
+              <i class='bx bxs-phone'></i>
               +251961555888 <br>
+              <i class='bx bxs-envelope' ></i>
               info@hellocoffeeorigins.com
             </p>
           </div>
