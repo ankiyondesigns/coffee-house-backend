@@ -307,16 +307,16 @@ button {
 
 .home__scroll {
   position: absolute;
-  width: 100px;
+  width: 30px;
   bottom: -7rem;
   left: 0;
   right: 0;
   margin: 0 auto;
   background-color: #f1f1f1;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   border-radius: 20%;
   border: none;
   animation: scroll 3s infinite;
@@ -674,24 +674,22 @@ button {
 /*=============== PAGINATION ===============*/
 .pagination {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   margin-top: 3rem;
 }
 
 .pagination__button {
   margin: 0 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  padding: 1rem 1.75rem;
+  background-color: var(--black-color);
   border-radius: 0.25rem;
-  color: var(--title-color);
+  color: #fff;
+  font-size: var(--normal-font-size);
+  text-transform: uppercase;
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
-.pagination__button:hover:not(.disabled) {
-  background-color: #f1f1f1;
-}
 
 .pagination__button.disabled {
   opacity: 0.5;
