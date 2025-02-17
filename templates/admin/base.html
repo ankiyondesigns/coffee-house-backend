@@ -54,7 +54,13 @@
             toolbar_mode: 'sliding',
             spellchecker_ignore_list: ['Ephox', 'Moxiecode'],
             tinycomments_mode: 'embedded',
-            content_style: '.mymention{ color: gray; }',
+            content_style: `
+                @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+                body { font-family: 'Poppins', sans-serif; background: transparent !important; }
+                p, span, div { background: none !important; }
+            `,
+            font_formats: "Bebas Neue=Bebas Neue, sans-serif; Poppins=Poppins, sans-serif;",
             contextmenu: 'link image in',
             a11y_advanced_options: true,
             mentions_selector: '.mymention',
