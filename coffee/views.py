@@ -4,6 +4,9 @@ from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 from .models import CoffeeProduct, Post
 from django.http import Http404
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.views.decorators.csrf import csrf_exempt
 
 def home(request):
     # Get all coffee products from the database
@@ -62,3 +65,21 @@ def post_detail(request, post):
                 'coffee/blog.html',
                             {'post': post,
                              'recommended_posts': recommended_posts,})
+
+
+
+@csrf_exempt
+def upload_image(request):
+    if request.method == "POST":
+        image = request.FILES.get("image")
+        path = default_storage.save(f"editorjs/images/{image.name}", ContentFile(image.read()))
+        return JsonResponse({"success": 1, "file": {"url": f"/media/{path}"}})
+    return JsonResponse({"success": 0, "error": "Upload failed"})
+
+@csrf_exempt
+def upload_video(request):
+    if request.method == "POST":
+        video = request.FILES.get("video")
+        path = default_storage.save(f"editorjs/videos/{video.name}", ContentFile(video.read()))
+        return JsonResponse({"success": 1, "file": {"url": f"/media/{path}"}})
+    return JsonResponse({"success": 0, "error": "Upload failed"})
