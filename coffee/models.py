@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
+from django_summernote.fields import SummernoteTextField
+from django_quill.fields import QuillField
 
 class CoffeeProduct(models.Model):
     MEASUREMENT_CHOICES = [
@@ -47,8 +49,8 @@ class Post(models.Model):
     author = models.ForeignKey(User,
                                 on_delete=models.CASCADE,
                                 related_name='blog_posts')
-    #body = models.TextField()
-    body = RichTextUploadingField(blank=True, null=True)
+    body = models.TextField(null=True, blank=True)
+    #body = models.JSONField(default=dict, blank=True, null=True) 
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
