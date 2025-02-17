@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'unfold.contrib.filters',  # optional, if special filters are needed
     'unfold.contrib.forms',  # optional, if special form elements are needed
     'unfold.contrib.inlines',
+    'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +48,8 @@ INSTALLED_APPS = [
     'coffee',
     'ckeditor',
     'ckeditor_uploader',
+    'django_summernote',
+    'django_quill',
 ]
 
 MIDDLEWARE = [
@@ -144,35 +147,62 @@ STATICFILES_DIRS = ['static/']
 
 CKEDITOR_UPLOAD_PATH = "uploads/"  # Directory for uploaded files
 CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'custom',
-        'height': 300,
-        'width': 'auto',
-        'extraPlugins': ','.join([
-            'uploadimage',  # For image upload
-        ]),
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline', 'Strike'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
-            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink'],
-            ['UploadImage', 'Image', 'Table'],  # Include UploadImage here
-            ['Source'],  # Toggle between source and WYSIWYG editor
-        ],
-        'removeDialogTabs': 'image:advanced;link:advanced',  # Simplify dialogs
-
-        # Add fonts
-        'contentsCss': [
-            'https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap',
-            'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap',
-        ],
-        'font_names': 'Bebas Neue/Bebas Neue; Poppins/Poppins;' +
-                      'Arial/Arial; Times New Roman/Times New Roman; Verdana/Verdana;',
+        'toolbar': None,
     },
 }
 
+
+
+SUMMERNOTE_CONFIG = {
+    'iframe': False,
+    'attachment_absolute_uri': True,  # Ensure absolute URLs for uploaded images
+    'disable_attachment': False,  # Enable file uploads
+    'attachment_filesize_limit': 50 * 1024 * 1024,  # Allow up to 50MB
+    'allowed_file_types': ['image', 'video'],  # Allow image & video uploads
+    'summernote': {
+        'width': '100%',
+        'height': '480px',
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video', 'file']],  # Ensure video is allowed
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+    },
+}
+
+
+# In your settings.py file
+QUILL_CONFIG = {
+    'theme': 'snow',  # You can also use 'bubble' theme if preferred
+    'modules': {
+        'toolbar': [
+            ['bold', 'italic', 'underline', 'strike'],
+            [{'header': 1}, {'header': 2}, 'blockquote'],  # Corrected header syntax
+            [{'list': 'ordered'}, {'list': 'bullet'}, 'indent'],
+            ['link', 'image', 'video'],
+            ['clean'],  # Allow clean formatting
+        ],
+
+        'imageResize': {  # open imageResize
+                'displaySize': True
+            }
+    },
+    'formats': [
+        'bold', 'italic', 'underline', 'strike', 'link', 'image', 'video', 'header', 'list',
+    ],
+    'placeholder': 'Compose your post...',
+    'height': '400px',
+}
 
 
 # Media files
