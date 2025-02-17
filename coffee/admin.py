@@ -5,7 +5,8 @@ from .models import CoffeeProduct, Post
 from django.urls import path
 from unfold.admin import ModelAdmin
 from django.contrib.auth.models import User
-
+from django import forms
+from unfold.contrib.forms.widgets import WysiwygWidget
 from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
 class CoffeeProductAdmin(ModelAdmin):
@@ -23,8 +24,17 @@ class CoffeeProductAdmin(ModelAdmin):
     image_preview.short_description = 'Image'
 
 
+class BlogAdminForm(forms.ModelForm):
+    body = forms.CharField(widget=forms.Textarea(attrs={'id': "richtext_field"}))
+
+    class Meta:
+        model = Post
+        fields = "__all__"
+
 @admin.register(Post)
 class PostAdmin(ModelAdmin):
+    form = BlogAdminForm
+    
     list_display = ['title', 'slug', 'author', 'publish', 'status']
     list_filter = ['status', 'created', 'publish', 'author']
     search_fields = ['title', 'body']
