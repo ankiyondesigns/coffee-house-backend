@@ -1,0 +1,96 @@
+<style>
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 10px;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    padding: 8px 12px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+    transition: background 0.3s ease-in-out;
+}
+
+.page-link:hover {
+    background-color: #333333; /* Dark gray for hover */
+    color: white;
+}
+
+.active .page-link {
+    background-color: #333333; /* Dark gray for active page */
+    color: white;
+    border-color: #333333; /* Dark gray for border */
+}
+</style>
+  {% if posts.paginator.num_pages > 1 %}
+<nav class="pagination__container">
+  <ul class="pagination">
+    {% if posts.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1">&laquo; First</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a>
+      </li>
+    {% endif %}
+
+    {% for num in posts.paginator.page_range %}
+      {% if num == posts.number %}
+        <li class="page-item active">
+          <span class="page-link">{{ num }}</span>
+        </li>
+      {% elif num > posts.number|add:"-3" and num < posts.number|add:"3" %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    {% if posts.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ posts.next_page_number }}">Next</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ posts.paginator.num_pages }}">Last &raquo;</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("#pagination-container").addEventListener("click", function (event) {
+        let target = event.target.closest("a.page-link"); // Ensure it's an <a> element
+
+        if (target) {
+            event.preventDefault();
+            let pageUrl = target.getAttribute("href");
+
+            fetch(pageUrl, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the blog posts container
+                document.querySelector("#blog-posts").innerHTML = data.posts_html;
+                // Update the pagination container
+                document.querySelector("#pagination-container").innerHTML = data.pagination_html;
+                // Update the URL without reloading the page
+                window.history.pushState({}, "", pageUrl);
+            })
+            .catch(error => console.error("Pagination Error:", error));
+        }
+    });
+});
+</script> 
