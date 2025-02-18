@@ -17,32 +17,32 @@ def home(request):
 
     # Paginate the blog posts
     paginator = Paginator(posts_list, 2)  # Show 2 posts per page
-    page_number = request.GET.get('page')  # Get the current page number from the request
+    page_number = request.GET.get('page')  # Get the current page number
 
     try:
-        posts = paginator.page(page_number)  # Get the posts for the current page
+        posts = paginator.page(page_number)
     except PageNotAnInteger:
-        # If page is not an integer, deliver the first page
-        posts = paginator.page(1)
+        posts = paginator.page(1)  # If page is not an integer, show first page
     except EmptyPage:
-        # If page is out of range (e.g., 9999), deliver the last page
-        posts = paginator.page(paginator.num_pages)
+        posts = paginator.page(paginator.num_pages)  # Show last page if out of range
 
+    # Handle AJAX requests for pagination
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        # If it's an AJAX request, return JSON data
         posts_html = render_to_string('coffee/blog_posts_partial.html', {'posts': posts})
+        pagination_html = render_to_string('coffee/pagination.html', {'posts': posts})
         return JsonResponse({
             'posts_html': posts_html,
+            'pagination_html': pagination_html,
             'has_next': posts.has_next(),
             'has_previous': posts.has_previous(),
             'current_page': posts.number,
             'total_pages': paginator.num_pages,
         })
 
-    # If it's a regular request, render the full page
+    # Render the full page for normal requests
     return render(request, 'coffee/home.html', {
         'products': products,
-        'posts': posts,  # Pass the paginated posts
+        'posts': posts,  # Pass paginated posts
     })
 
 def blog(request):
