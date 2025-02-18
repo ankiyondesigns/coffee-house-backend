@@ -317,7 +317,7 @@
         </div>
       </section>
 
-          <!-- coffee/templates/coffee/home.html -->
+    <!-- coffee/templates/coffee/home.html -->
     {% if posts %}
       <section class="blog section" id="blog">
         <div class="blog__container container">
@@ -329,30 +329,10 @@
             {% include 'coffee/blog_posts_partial.html' with posts=posts %}
           </div>
 
-          <!-- Pagination -->
-          <div class="pagination">
-            <span class="step-links">
-              <!-- Previous Button -->
-              <a href="{% if posts.has_previous %}?page={{ posts.previous_page_number }}{% else %}#{% endif %}"
-                class="pagination__button {% if not posts.has_previous %}disabled{% endif %}"
-                id="prev-page">
-                previous
-              </a>
-
-              <!-- Current Page Info -->
-              <span class="current">
-                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
-              </span>
-
-              <!-- Next Button -->
-              <a href="{% if posts.has_next %}?page={{ posts.next_page_number }}{% else %}#{% endif %}"
-                class="pagination__button {% if not posts.has_next %}disabled{% endif %}"
-                id="next-page">
-                next
-              </a>
-            </span>
-          </div>
-        </div>
+          <!-- Include pagination controls -->
+<div id="pagination-container">
+  {% include 'coffee/pagination.html' %}
+</div>
       </section>
     {% endif %}
     </main>
